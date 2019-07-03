@@ -8,10 +8,13 @@ class Note extends React.Component {
 
 
   render() {
-
+    console.log(this.context);
 
     const note = this.context.notes.find(note => `/note/${note.id}` === this.props.match.url);
-
+    if (!note){
+      this.props.history.push("/");
+      return('');
+    }
 
     const date = new Date(note.modified);
     const convertedDate = date.toDateString();
@@ -20,7 +23,7 @@ class Note extends React.Component {
       if (folder.id === note.folderId) {
         return true
       } else return false
-    })
+    });
 
 
     return <div key={note.id}>
@@ -32,7 +35,9 @@ class Note extends React.Component {
       <div className="expanded-note">
         <h2 className="note-name">{note.name}</h2>
         <p>Date Modified On: {convertedDate}</p>
-        <button type="click">Delete Note</button>
+        <button type="click" onClick={() =>{
+          this.props.handleDeleteNote(note.id);
+        }}>Delete Note</button>
       </div>
 
       <p className="note-content">{note.content}</p>

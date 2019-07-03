@@ -22,8 +22,13 @@ class App extends React.Component {
     const filteredNotes = this.state.store.notes.filter(note => id !== note.id);
     this.setState({
       store: {...this.state.store, notes: filteredNotes}
-    })
+    });
+    const options = {
+      method: "DELETE",
+    };
+    fetch(`http://localhost:9090/notes/${id}` , options);
   }
+
 
 
   componentDidMount(){
@@ -72,7 +77,7 @@ class App extends React.Component {
           render={props => <UserContext.Provider value={{
             folders: this.state.store.folders,
             notes: this.state.store.notes
-          }}><Note match={props.match} history={props.history} /></UserContext.Provider>}
+          }}><Note handleDeleteNote={this.handleDeleteNote} match={props.match} history={props.history} /></UserContext.Provider>}
         />
       </div>
     );
