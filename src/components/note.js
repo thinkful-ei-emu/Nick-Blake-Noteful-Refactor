@@ -4,12 +4,12 @@ import './styles/note.css'
 function Note(props) {
 
 
+  console.log(props.match)
+
 
   const note = props.notes.find(note => `/note/${note.id}` === props.match.url);
   
-//   props.notes
-//     .filter(note => `/note/${note.id}` === props.match.url)
-//     .map(note => {
+
       const date = new Date(note.modified);
       const convertedDate = date.toDateString();
 
@@ -19,23 +19,6 @@ function Note(props) {
             } else return false 
         })
 
-//         console.log(folder.name);
-
-    //   return (
-    //     <div key={note.id}>
-    //       <button>Go Back</button>
-    //       <h2>{folder.name}</h2>
-
-    //       <div>
-    //         <h2>{note.name}</h2>
-    //         <p>Date Modified On: {convertedDate}</p>
-    //         <button type="click">Delete Note</button>
-    //       </div>
-
-    //       <p>{note.content}</p>
-
-    //     </div>
-    //   );
 
   return <div key={note.id}>
     <div className="button-folder-container">

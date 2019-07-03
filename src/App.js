@@ -20,7 +20,7 @@ class App extends React.Component {
     <div className="App">
       <Header/>
         <Route exact path='/' 
-        render={props => <MainSideBar folders={this.state.store.folders} />}
+        render={() => <MainSideBar folders={this.state.store.folders} />}
         />
       <Route exact path='/' 
       render={props => <Main notes={this.state.store.notes} folders={this.state.store.folders} match={props.match}/>}
