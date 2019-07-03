@@ -1,15 +1,25 @@
 import React from 'react';
 import NoteList from './notelist';
 import './styles/main.css'
+import UserContext from '../UserContext';
 
-function Main (props) {
+class Main extends React.Component {
 
-    return(
-        <div>
-            <NoteList folders={props.folders} match={props.match} notes={props.notes}/>
-            <button className="add-note">Add Note</button>
-        </div>
+  static contextType = UserContext;
+
+  render() {
+    console.log('In Main:',this.props)
+    return (
+      <div>
+        <NoteList 
+          folders={this.context.folders} 
+          match={this.props.match} 
+          handleDeleteNote={this.props.handleDeleteNote}
+          notes={this.context.notes} />
+        <button className="add-note">Add Note</button>
+      </div>
     )
+  }
 }
 
 export default Main

@@ -4,7 +4,7 @@ import './styles/notelist.css'
 
 
 function NoteList(props) {
-
+    console.log(props)
     const filteredNoteList = props.notes
         .filter(note => `/folder/${note.folderId}` === props.match.url)
         .map(note => {
@@ -16,7 +16,7 @@ function NoteList(props) {
                     <h2>{note.name}</h2>
                     </Link>
                     <p>Date Modified On: {convertedDate}</p>
-                    <button type="click" className="delete-button">Delete Note</button>
+                    <button type="click" onClick={() => props.handleDeleteNote(note.id)} className="delete-button">Delete Note</button>
                 </li>
             )
         })
@@ -30,7 +30,7 @@ function NoteList(props) {
                 <h2>{note.name}</h2>
                 </Link>
                 <p>Date Modified On: {convertedDate}</p>
-                <button type="click" className="delete-button">Delete Note</button>
+                <button type="click" onClick={() => props.handleDeleteNote(note.id)} className="delete-button">Delete Note</button>
             </li>
         )
     })
